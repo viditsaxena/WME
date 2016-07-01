@@ -1,0 +1,26 @@
+{
+  "name": "dater",
+  "version": "0.0.1",
+  "description": "An app to post dating fiascos",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Vidit Saxena",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.4",
+    "morgan": "^1.6.1",
+    "rand-token": "^0.2.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "angular",
+    "node",
+    "mongo"
+  ]
+}

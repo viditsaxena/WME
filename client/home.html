@@ -1,0 +1,121 @@
+<script type="text/ng-template" id="customPopupTemplate.html">
+  <div class="custom-popup-wrapper"
+     ng-style="{top: position().top+'px', left: position().left+'px'}"
+     style="display: block;position: absolute;top: 100%;left: 0;z-index: 1000;background-color: white;width:100%;"
+     ng-show="isOpen() && !moveInProgress"
+     aria-hidden="{{!isOpen()}}">
+    <p class="message" style="padding: 10px 20px;border-bottom: 1px solid #ddd;color: #868686;">Searched Content shown as Title - City
+    <ul class="dropdown-menu" role="listbox" style="position: static;float: none;display: block;min-width: 160px;width:100%;background-color: transparent;border: none;border-radius: 0;box-shadow: none;">
+        <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }"
+            ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+            <a href="" tabindex="-1" ng-bind-html="match.label | uibTypeaheadHighlight:query" ng-attr-title="{{match.label}}" class="ng-binding ng-scope">{{match.label}} </a>
+        </li>
+    </ul>
+    </p>
+    
+  </div>
+</script>
+<!-- Intro Header -->
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <form class="navbar-form">
+                    <div class="form-group col-sm-12" style="display:inline;">
+                        <div class="input-group" style="display:table;">
+    <input type="text" ng-model="asyncSelected" placeholder="Search for title or city" uib-typeahead="value for value in searchItem($viewValue)" typeahead-popup-template-url="customPopupTemplate.html" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+   
+
+                            <span class="input-group-btn" style="width:1%;">
+                                <button class="btn btn-default" type="button" ng-click="searchResults(asyncSelected)"><i class="fa fa-search" style="color:white;"></i>
+                                </button> 
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <!-- <h4 class="brand-heading">Join a Post</h4> -->
+                    <p class="intro-text">Find Dating Gossip.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section id="about" class="container-fluid content-section text-center">
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Find a Post
+        </h2>
+    </div>
+</div>
+
+<div class="row" ng-if="showSearchTerm">
+  <div class="col-lg-12">
+    <h4 class="page-header">Plain search for {{searchTerm}}</h4>
+  </div>
+</div>
+      <!-- /.row -->
+
+      <!-- Projects Row -->
+<div class="container posts">
+
+      <div class="row" >
+        <article class="post  card" ng-repeat="post in posts ">
+          <h2 class="post-title emojied">
+            <a href="" ng-click="getOnePost(post)">{{ post.title }}</a>
+          </h2>
+          <div class="post-content">
+            <!-- <div class="post-thumbnail" ng-repeat="image in post.images" >
+                <img src="{{ image.thumbnail_url}}"></img>
+              </div> -->
+              <div ng-if="post.images.length>0" >
+     <div class="swiper-container gallery-thumbs" style="width: 600px;
+    height: 300px;">
+         <div class="swiper-wrapper">
+             <div class="swiper-slide" style="background-size: cover;background-image:url('{{image.secure_url}}')" ng-repeat="image in post.images" ></div>
+         </div>
+         <!-- <div class="swiper-button-next swiper-button-white"></div>
+         <div class="swiper-button-prev swiper-button-white"></div> -->
+     </div>
+   </div>
+              
+                
+            <div class="post-info">
+              <a class="api-time btn btn-default btn-sm timestamp-ready">
+                <i class="fa fa-clock-o"></i>
+                <span>3 weeks ago</span>
+              </a>
+              <span class="api-share btn btn-default btn-sm toggle-share share-ready" data-id="post-share-2084690"><i class="fa fa-share"></i><span> Share</span></span>
+              <span class="api-report btn btn-default btn-sm toggle-report reporting-ready" data-id="post-report-2084690"><i class="fa fa-flag"></i><span> Report</span></span>
+              <div class="clearfix"></div>
+            </div>
+            <div class="post-text dictionary-ready emojied">
+			           <p><strong style="text-transform:uppercase;">The Dirty Army: </strong> {{ post.content }}</p>
+                 <p>
+                   {{ post.subject }} - {{ post.yourName }} - {{ post.city }}
+                 </p>
+						</div>
+          </div>
+          <div class="post-meta">
+					<div class="row">
+						<div class="col-xs-3 like-wrapper">
+							<button id="heart-2085604" type="button" class="btn btn-default btn-block btn-sm heart" data-id="2085604" ng-click="like(post)"><i class="fa fa-heart"></i> <span>{{post.likes.length}}</span></button>
+						</div>
+						<div class="col-xs-6 category-wrapper">
+						      <a class="btn btn-default btn-block btn-sm" ng-click="searchCity(post.city)"><i class="fa fa-map-marker"></i> {{post.city}}</a>
+            </div>
+						<div class="col-xs-3 comments-wrapper">
+							<a class="btn btn-default btn-block btn-sm comments  " ng-click="getOnePost(post)"><i class="fa fa-comments"></i><span> Comments</span></a>
+            </div>
+					</div>
+				</div>
+
+        </article>
+      </div>
+    </div>
+</section>
+
+      <hr>

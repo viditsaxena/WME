@@ -1,0 +1,119 @@
+<div class="container form-section">
+
+  <div class="row">
+      <div ng-if="imageUploadedSuccessfully===true" class="alert alert-success margin-vertical" role="alert" >
+        The images were uploaded <strong>successfully</strong>
+      </div>
+      <div class="col-md-8 col-md-offset-2">
+        <form ng-submit="addPost()" class=" form-post" name="postCreateForm" >
+          <div class="row" style="margin-right: -15px !important;margin-left: -15px !important;">
+            <div class="col-xs-6">
+              <fieldset class="form-group">
+                <label for="your-name">Your Name</label>
+                <input id="your-name" ng-model="newPost.yourName" name="your-name" type="text" class="form-control" placeholder="" required>
+              </fieldset>
+            </div>
+            <div class="col-xs-6">
+              <fieldset class="form-group">
+                <label for="your-email">Your Email</label>
+                <input id="your-email" name="your-email" ng-model="newPost.email" type="email" class="form-control" placeholder="" required>
+              </fieldset>
+            </div>
+            <div class="col-xs-6">
+              <fieldset class="form-group">
+                <label for="post-subject">Who's this about?
+                  <span class="hidden-xs"> (Full name)</span>
+                </label>
+                <input id="post-subject" ng-model="newPost.subject" name="post-subject" type="text" class="form-control" placeholder="" required>
+              </fieldset>
+            </div>
+            <div class="col-xs-6">
+              <fieldset class="form-group">
+                <label for="post-city">What city are they in?</label>
+                <input id="post-city" ng-model="newPost.city" name="post-city" type="text" class="form-control" placeholder="" required>
+              </fieldset>
+            </div>
+            <div class="col-xs-12">
+              <fieldset class="form-group">
+                <label for="post-title">Title Your Post</label>
+                <input id="post-title" ng-model="newPost.title"  name="post-title" type="text" class="form-control" required >
+              </fieldset>
+            </div>
+            <div class="col-xs-12">
+              <fieldset class="form-group">
+                <label for="post-content">What's the Gossip?</label>
+                <textarea class="form-control" id="post-content" name="post-content" rows="2" ng-model="newPost.content" required>
+                </textarea>
+              </fieldset>
+            </div>
+            <div class="clearfix">
+            </div>
+            <div class="col-xs-6">
+              <fieldset class="form-group">
+                <a ng-click="widgetOpen()" id="upload_widget_opener">Upload multiple images</a>
+              </fieldset>
+              <!-- <fieldset id="post-photo-2" class="form-group" style="display:none;">
+                <input type="file" name="post-photo-2">
+              </fieldset>
+              <fieldset id="post-photo-3" class="form-group" style="display:none;">
+                <input type="file" name="post-photo-3">
+              </fieldset>
+              <fieldset id="post-photo-4" class="form-group" style="display:none;">
+                <input type="file" name="post-photo-4">
+              </fieldset>
+              <fieldset id="post-photo-5" class="form-group" style="display:none;">
+                <input type="file" name="post-photo-5">
+              </fieldset> -->
+            </div>
+            <div class="row" ng-repeat="image in images" ng-if="images.length>0">
+              <img src="{{image.thumbnail_url}}">
+            </div>
+            <!-- <div class="col-xs-6">
+              <p class="text-muted" style="margin-top:25px;">
+                <button type="button" class="toggle-add-photo btn btn-default btn-xs">
+                  <i class="fa fa-camera"></i> &nbsp; Add Another Photo
+                </button></p>
+              </div> -->
+              <div class="clearfix"></div>
+              <div class="col-lg-12">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="post-terms" value="agreed" required>
+                    <p>By checking this checkbox, I hereby indicate that I have read and understood and agree to be bound by our
+                      <a href="https://thedirty.com/terms-of-service/" target="_blank" style="font-weight:700;text-decoration:underline;">Terms of Service
+                      </a>.
+                    </p>
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <!-- <div id="submit-dirt-submitting" class="alert alert-info" style="display:none;">
+                  <p class="text-center">
+                    <i class="fa fa-refresh fa-spin"></i> &nbsp; Submitting Post
+                  </p>
+                </div>
+                <div id="submit-dirt-success" class="alert alert-success" style="display:none;">
+                  <strong>Congrats!</strong> Your submission was received.
+                </div>
+                <div id="submit-dirt-fields" class="alert alert-danger" style="display:none;">
+                  <strong>Oh no!</strong> All fields are required. Please try again.
+                </div>
+                <div id="submit-dirt-checkbox" class="alert alert-danger" style="display:none;">
+                  <strong>Oh no!</strong> You must agree to the terms to submit. Please try again.
+                </div>
+                <div id="submit-dirt-image" class="alert alert-danger" style="display:none;">
+                  <strong>Oh no!</strong> An image is required. Please try again.
+                </div><div id="submit-dirt-error" class="alert alert-danger" style="display:none;">
+                  <strong>Oh no!</strong> An error occurred. Please try again.
+                </div> -->
+                <fieldset class="form-group" style="margin-bottom:0;">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    Submit Story
+                  </button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>

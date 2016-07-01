@@ -1,0 +1,52 @@
+    <div class="container form-section">
+      <button ng-click="getPrivatePosts()" class="btn btn-primary">
+        See Private Posts
+      </button>
+
+        <div class="list-group" ng-repeat="post in privatePosts">
+          <article class="post private-post card">
+            <h2 class="post-title emojied">
+            {{ post.title }}
+            </h2>
+            <div class="post-content">
+              <!-- <div class="post-thumbnail" ng-repeat="image in post.images" >
+                <img src="{{ image.thumbnail_url}}"></img>
+              </div> -->
+              <div ng-if="post.images.length>0" >
+     <div class="swiper-container gallery-thumbs" style="width: 600px;
+    height: 300px;">
+         <div class="swiper-wrapper">
+             <div class="swiper-slide" style="background-size: cover;background-image:url('{{image.secure_url}}')" ng-repeat="image in post.images" ></div>
+         </div>
+         <!-- <div class="swiper-button-next swiper-button-white"></div>
+         <div class="swiper-button-prev swiper-button-white"></div> -->
+     </div>
+   </div>
+              <div class="post-info">
+
+                <div class="clearfix"></div>
+              </div>
+              <div class="post-text dictionary-ready emojied">
+  			           <p><strong style="text-transform:uppercase;">The Dirty Army: </strong> {{ post.content }}</p>
+                   <p>
+                     {{ post.subject }} - {{ post.yourName }} - {{ post.city }}
+                   </p>
+  						</div>
+            </div>
+            <div class="post-meta">
+  					<div class="row">
+  						<div class="col-xs-6 category-wrapper">
+  						<h6 style="color: black;"><i class="fa fa-map-marker"></i> {{ post.city }}</h6>
+             </div>
+  					</div>
+  				  </div>
+          </article>
+
+          <fieldset class="form-group">
+            <button ng-click="makePostPublic(post)" class="btn btn-primary">
+              Make Post Public
+            </button>
+          </fieldset>
+        </div>
+
+    </div> <!-- /container -->
